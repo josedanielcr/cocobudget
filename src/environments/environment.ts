@@ -3,7 +3,9 @@ export const environment = {
   msalConfig: {
     auth: {
       clientId: 'dc92cf9f-6712-4b49-9696-276ddaecf710',
-      authority: "https://login.microsoftonline.com/6a513ab7-d291-4204-abdc-e2b6fc3e61a3",
+      authority: "https://cocobudget.b2clogin.com/cocobudget.onmicrosoft.com/B2C_1_cocobudget_signin_signup",
+      knownAuthorities: ["cocobudget.onmicrosoft.com"],
+      redirectUri: 'http://localhost:4200',
     },
   },
   apiConfig: {
