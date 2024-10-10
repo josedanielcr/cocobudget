@@ -1,7 +1,7 @@
 @if(!loginDisplay){
-  <button (click)="loginPopup()">Login using Popup</button>
+  <button mat-flat-button (click)="loginPopup()">Login using Popup</button>
 }
 
 @if(loginDisplay){
-  <button (click)="logout(true)">Logout using Popup</button>
+  <button mat-flat-button (click)="logout(true)">Logout using Popup</button>
 }
