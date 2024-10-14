@@ -10,11 +10,12 @@ import {
   PopupRequest,
   RedirectRequest
 } from '@azure/msal-browser';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MatButton],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

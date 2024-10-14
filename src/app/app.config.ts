@@ -17,6 +17,7 @@ import {
   PublicClientApplication
 } from '@azure/msal-browser';
 import {environment} from '../environments/environment';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export function loggerCallback(logLevel: LogLevel, message: string) {
   console.log(message);
@@ -113,6 +114,6 @@ export const appConfig: ApplicationConfig = {
     },
     MsalService,
     MsalGuard,
-    MsalBroadcastService,
+    MsalBroadcastService, provideAnimationsAsync(),
   ]
 };
