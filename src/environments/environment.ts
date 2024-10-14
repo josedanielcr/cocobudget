@@ -1,15 +1,24 @@
-export const environment = {
-  production: false,
-  msalConfig: {
-    auth: {
-      clientId: 'dc92cf9f-6712-4b49-9696-276ddaecf710',
-      authority: "https://cocobudget.b2clogin.com/cocobudget.onmicrosoft.com/B2C_1_cocobudget_signin_signup",
-      knownAuthorities: ["cocobudget.onmicrosoft.com"],
-      redirectUri: 'http://localhost:4200',
-    },
+import { EnvironmentConfiguration } from "../app/models/EnvironmentConfiguration";
+
+const serverUrl='https://apimanagementcocobudget.azure-api.net';
+
+// The list of file replacements can be found in `angular.json`.
+export const environment: EnvironmentConfiguration = {
+  env_name: 'dev',
+  production: true,
+  apiUrl: serverUrl,
+  apiEndpoints: {
+    userProfile:'user-profiles'
   },
-  apiConfig: {
-    scopes: ['api://58e80ee9-a6a3-43bf-bcb3-de821d1b95c9/all_apis'],
-    uri: 'https://graph.microsoft.com/v1.0/me',
+  adb2cConfig: {
+    clientId: '8a44802f-73fe-4a24-9bdf-256d93ee1ea7',
+    readScopeUrl: 'https://cocobudget.onmicrosoft.com/api-management/read',
+    writeScopeUrl: 'https://cocobudget.onmicrosoft.com/api-management/write',
+    scopeUrls:[
+      'https://cocobudget.onmicrosoft.com/api-management/read',
+      'https://cocobudget.onmicrosoft.com/api-management/write'
+    ],
+    apiEndpointUrl: 'https://cocobudget.onmicrosoft.com/api-management'
   },
+  cacheTimeInMinutes: 30
 };
