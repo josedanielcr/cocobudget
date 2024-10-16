@@ -1,3 +1,3 @@
 export class isUserRegisteredResponse {
-  IsRegistered?: boolean;
+  isRegistered?: boolean;
 }

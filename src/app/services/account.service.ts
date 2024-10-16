@@ -11,7 +11,7 @@ import {isUserRegisteredResponse} from '../shared/models/account/isUserRegistere
 export class AccountService {
 
   private readonly _accountServiceEndpoint = environment.accountService;
-  private readonly _accountServicePrefix = 'user/';
+  private readonly _accountServicePrefix = 'user';
 
   constructor(private httpClient : HttpClient ) { }
 

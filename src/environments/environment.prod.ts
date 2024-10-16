@@ -1,8 +1,7 @@
-import { EnvironmentConfiguration } from "../app/models/EnvironmentConfiguration";
+import {EnvironmentConfiguration} from "../app/models/EnvironmentConfiguration";
 
 const serverUrl='https://apimanagementcocobudget.azure-api.net';
 
-// The list of file replacements can be found in `angular.json`.
 export const environment: EnvironmentConfiguration = {
   env_name: 'dev',
   production: true,
@@ -20,5 +19,9 @@ export const environment: EnvironmentConfiguration = {
     ],
     apiEndpointUrl: 'https://cocobudget.onmicrosoft.com/api-management'
   },
-  cacheTimeInMinutes: 30
+  cacheTimeInMinutes: 30,
+  accountService: 'https://apimanagementcocobudget.azure-api.net/account/api/',
+  budgetService: '',
+  transactionService: '',
+  notificationService: ''
 };

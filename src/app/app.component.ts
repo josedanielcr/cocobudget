@@ -1,8 +1,9 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {filter, Subject, takeUntil} from 'rxjs';
 import {MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService} from '@azure/msal-angular';
 import {
+  AccountInfo,
   AuthenticationResult,
   EventMessage,
   EventType,
@@ -11,6 +12,7 @@ import {
   RedirectRequest
 } from '@azure/msal-browser';
 import {MatButton} from '@angular/material/button';
+import {AccountService} from './services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,9 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalBroadcastService: MsalBroadcastService,
+    private accountService : AccountService,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -71,7 +75,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   checkAndSetActiveAccount() {
     let activeAccount = this.authService.instance.getActiveAccount();
-
+    if(activeAccount){
+      this.checkIfUserIsRegistered(activeAccount.username);
+    }
     if (
       !activeAccount &&
       this.authService.instance.getAllAccounts().length > 0
@@ -87,14 +93,26 @@ export class AppComponent implements OnInit, OnDestroy {
         .loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
         .subscribe((response: AuthenticationResult) => {
           this.authService.instance.setActiveAccount(response.account);
+          this.checkIfUserIsRegistered(response.account.username);
         });
     } else {
       this.authService
         .loginPopup()
         .subscribe((response: AuthenticationResult) => {
           this.authService.instance.setActiveAccount(response.account);
+          this.checkIfUserIsRegistered(response.account.username);
         });
     }
+  }
+
+  checkIfUserIsRegistered(email : string){
+    this.accountService.checkIfUserRegistered(email).subscribe((response) => {
+      if(response.value?.isRegistered){
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/home/setup']);
+      }
+    });
   }
 
   logout(popup?: boolean) {

@@ -3,5 +3,6 @@
 }
 
 @if(loginDisplay){
+  <router-outlet></router-outlet>
   <button mat-flat-button (click)="logout(true)">Logout using Popup</button>
 }
