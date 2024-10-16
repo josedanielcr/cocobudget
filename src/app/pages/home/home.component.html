@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="home-nav-container" autosize>
+
+  <!--  nav options-->
+  <mat-drawer #drawer mode="side" opened class="example">
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+
+  <!--  app content-->
+  <div class="home-content">
+    <div class="pt-3 ps-3">
+      <button class="interactive-icon-wrapper bg-primary d-flex align-items-center justify-content-center p-1 rounded-circle" (click)="toggleNav()">
+        <mat-icon aria-hidden="false" aria-label="Navigation bar toggle icon"
+                  [fontIcon]="isExpanded ? 'chevron_left' : 'chevron_right'" class="mat-icon-custom">
+        </mat-icon>
+      </button>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
