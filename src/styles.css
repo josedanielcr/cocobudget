@@ -1,4 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+ /* You can add global styles to this file, and also import other style files */
+:root {
+   /* Primary Colors */
+   --calm-green: #A3C9A8;
+   --neutral-teal: #608C83;
+   /* Secondary Colors */
+   --warm-sand: #E8D3C8;
+   --soft-coral: #FF6F61;
+   /* Text and Background Colors */
+   --background-color: #F5F5F5;
+   --text-color: #333333;
+   /* CTA Color */
+   --cta-blue: #4A90E2;
+}
+
+/* Text Colors */
+.text-calm-green { color: var(--calm-green) !important; }
+.text-neutral-teal { color: var(--neutral-teal) !important; }
+.text-warm-sand { color: var(--warm-sand) !important; }
+.text-soft-coral { color: var(--soft-coral) !important; }
+.text-light { color: var(--background-color) !important; } /* Changed from text-background */
+.text-dark { color: var(--text-color) !important; }
+.text-cta-blue { color: var(--cta-blue) !important; }
+
+/* Background Colors */
+.bg-calm-green { background-color: var(--calm-green) !important; }
+.bg-neutral-teal { background-color: var(--neutral-teal) !important; }
+.bg-warm-sand { background-color: var(--warm-sand) !important; }
+.bg-soft-coral { background-color: var(--soft-coral) !important; }
+.bg-light { background-color: var(--background-color) !important; }
+.bg-dark { background-color: var(--text-color) !important; }
+.bg-cta-blue { background-color: var(--cta-blue) !important; }
+.bg-none { background: none !important; }
+
+/* Utility Classes for Borders */
+.border-calm-green { border-color: var(--calm-green) !important; }
+.border-neutral-teal { border-color: var(--neutral-teal) !important; }
+.border-warm-sand { border-color: var(--warm-sand) !important; }
+.border-soft-coral { border-color: var(--soft-coral) !important; }
+.border-cta-blue { border-color: var(--cta-blue) !important; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+p, span, h1, h2, h3, h4, h5 { color: var(--text-color) }
+
+/*main utilities*/
+.main-shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.border-rounded {
+  border-radius: 0.5rem;
+}

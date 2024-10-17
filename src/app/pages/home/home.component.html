@@ -1,16 +1,41 @@
 <mat-drawer-container class="home-nav-container" autosize>
 
   <!--  nav options-->
-  <mat-drawer #drawer mode="side" opened class="example">
-    <p>Auto-resizing sidenav</p>
+  <mat-drawer #drawer mode="side" opened class="bg-neutral-teal">
+    <div class="p-4 d-flex flex-column">
+
+      <!-- options-->
+      <div class="sidebar-option border-rounded mb-3 flex-fill p-2" (mouseenter)="isOptionHovered = true" (mouseleave)="isOptionHovered=false" [ngClass]="{
+        'hovered-option': isOptionHovered
+      }">
+        <mat-icon aria-hidden="false" aria-label="budget sidebar icon" fontIcon="wallet" class="sidebar-option-icon text-light"></mat-icon>
+        <span class="text-light">Budget</span>
+      </div>
+
+      <div class="sidebar-option border-rounded mb-3 flex-fill p-2" (mouseenter)="isOptionHovered = true" (mouseleave)="isOptionHovered=false" [ngClass]="{
+        'hovered-option': isOptionHovered
+      }">
+        <mat-icon aria-hidden="false" aria-label="budget sidebar icon" fontIcon="account_balance" class="sidebar-option-icon text-light"></mat-icon>
+        <span class="text-light">Accounts</span>
+      </div>
+
+      <div class="sidebar-option border-rounded flex-fill p-2" (mouseenter)="isOptionHovered = true" (mouseleave)="isOptionHovered=false" [ngClass]="{
+        'hovered-option': isOptionHovered
+      }">
+        <mat-icon aria-hidden="false" aria-label="budget sidebar icon" fontIcon="receipt_long" class="sidebar-option-icon text-light"></mat-icon>
+        <span class="text-light">Transactions</span>
+      </div>
+
+
+    </div>
   </mat-drawer>
 
   <!--  app content-->
   <div class="home-content">
     <div class="pt-3 ps-3">
-      <button class="interactive-icon-wrapper bg-primary d-flex align-items-center justify-content-center p-1 rounded-circle" (click)="toggleNav()">
+      <button class="interactive-icon-wrapper main-shadow bg-light d-flex align-items-center justify-content-center p-1 rounded-circle" (click)="toggleNav()">
         <mat-icon aria-hidden="false" aria-label="Navigation bar toggle icon"
-                  [fontIcon]="isExpanded ? 'chevron_left' : 'chevron_right'" class="mat-icon-custom">
+                  [fontIcon]="isExpanded ? 'chevron_left' : 'chevron_right'" class="mat-icon-nav-chevron">
         </mat-icon>
       </button>
     </div>

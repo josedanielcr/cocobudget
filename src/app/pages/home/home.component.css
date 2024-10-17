@@ -2,14 +2,32 @@
   height: 100%;
 }
 
-.example {
-  background: lightblue;
-}
-
 .interactive-icon-wrapper {
   background: none;
-  border: none;
   padding: 0;
   margin: 0;
   cursor: pointer;
+  border: 1px solid var(--text-color);
+}
+
+.mat-icon-nav-chevron {
+  transform: scale(1.5);
+  color: var(--text-color);
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.hovered-option {
+  background-color: var(--neutral-teal);
+  filter: brightness(0.9);
+}
+
+
+.sidebar-option-icon {
+  transform: scale(1.5);
 }
