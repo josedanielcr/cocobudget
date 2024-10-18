@@ -108,21 +108,11 @@ export class AppComponent implements OnInit, OnDestroy {
   checkIfUserIsRegistered(email : string){
     this.accountService.checkIfUserRegistered(email).subscribe((response) => {
       if(response.value?.isRegistered){
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']).then();
       } else {
-        this.router.navigate(['/home/setup']);
+        this.router.navigate(['/home/setup']).then();
       }
     });
-  }
-
-  logout(popup?: boolean) {
-    if (popup) {
-      this.authService.logoutPopup({
-        mainWindowRedirectUri: '/landing',
-      });
-    } else {
-      this.authService.logoutRedirect();
-    }
   }
 
   ngOnDestroy(): void {

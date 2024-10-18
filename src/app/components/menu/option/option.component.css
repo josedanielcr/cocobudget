@@ -1,0 +1,30 @@
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.hovered-option {
+  background-color: var(--neutral-teal);
+  filter: brightness(0.9);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulsating-icon {
+  animation: pulse 1.5s infinite ease-in-out;
+}

@@ -1,0 +1,11 @@
+<div class="sidebar-option border-rounded mb-3 flex-fill p-2 user-select-none"
+     (mouseenter)="isOptionHovered = true"
+     (mouseleave)="isOptionHovered=false"
+     [ngClass]="{
+        'hovered-option': isOptionHovered || option?.route === fullUrlPath,
+      }"
+      (click)="onOptionClick(option)"
+>
+  <mat-icon aria-hidden="false" aria-label="budget sidebar icon" [fontIcon]="getAssertedOptionIcon(option)" class="sidebar-option-icon text-light"></mat-icon>
+  <span class="text-light">{{option?.name}}</span>
+</div>

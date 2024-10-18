@@ -15,19 +15,6 @@
   color: var(--text-color);
 }
 
-.sidebar-option {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 1rem;
-}
-
-.hovered-option {
-  background-color: var(--neutral-teal);
-  filter: brightness(0.9);
-}
-
-
 .sidebar-option-icon {
   transform: scale(1.5);
 }
