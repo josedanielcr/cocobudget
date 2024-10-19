@@ -1,1 +1,14 @@
-<p>profile-banner works!</p>
+<div class="mb-3">
+  <div class="d-flex align-items-center">
+
+    <!-- profile image-->
+    <img [src]="accountService.user()?.profilePicture | nullProfileImage" alt="default profile image"
+         [height]="DEFAULT_IMAGE_HEIGHT"
+         [width]="DEFAULT_IMAGE_WIDTH"
+         class="rounded-circle me-3">
+
+    <!-- username-->
+    <span class="text-light">{{getCurrentUserName()}}</span>
+
+  </div>
+</div>
