@@ -9,6 +9,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {CreateUserRequest} from '../../shared/models/account/CreateUserRequest';
 import {Result} from '../../models/Result';
 import {User} from '../../models/business/User';
+import {MessagesService} from '../../services/messages.service';
+import {SnackbarType} from '../../components/utils/snackbar-message/snackbar-message.enum';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-setup',
@@ -24,7 +27,9 @@ export class SetupComponent {
   firstNameErrorMessage: WritableSignal<string> = signal('');
   lastNameErrorMessage: WritableSignal<string> = signal('');
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,
+              private messageService : MessagesService,
+              private router : Router) {
     merge(
       this.firstName.statusChanges,
       this.firstName.valueChanges,
@@ -59,10 +64,11 @@ export class SetupComponent {
     const createUserRequest = new CreateUserRequest(this.firstName.value!, this.lastName.value!, this.accountService.userEmail());
     this.accountService.setupUser(createUserRequest).subscribe({
       next : (result : Result<User>) => {
-        console.log(result);
+        this.messageService.showSnackbarMessage('Information updated successfully', SnackbarType.SUCCESS);
+        this.router.navigate(['/home/budget']).then();
       },
       error : (result : Result<User>) => {
-        console.error(result);
+        this.messageService.showSnackbarMessage(result.error.message, SnackbarType.ERROR);
       }
     });
   }

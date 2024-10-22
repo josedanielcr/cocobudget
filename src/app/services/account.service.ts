@@ -1,7 +1,7 @@
 import {Injectable, signal, Signal, WritableSignal} from '@angular/core';
 import { environment } from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {map, Observable, throwError} from 'rxjs';
 import {Result} from '../models/Result';
 import {isUserRegisteredResponse} from '../shared/models/account/isUserRegisteredResponse';
 import {CreateUserRequest} from '../shared/models/account/CreateUserRequest';
