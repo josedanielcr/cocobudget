@@ -1,0 +1,20 @@
+.home-content, .home-nav-container {
+  height: 100%;
+}
+
+.interactive-icon-wrapper {
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid var(--text-color);
+}
+
+.mat-icon-nav-chevron {
+  transform: scale(1.5);
+  color: var(--text-color);
+}
+
+.sidebar-option-icon {
+  transform: scale(1.5);
+}

@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import {filter, Subject, takeUntil} from 'rxjs';
 import {MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService} from '@azure/msal-angular';
@@ -13,28 +13,37 @@ import {
 } from '@azure/msal-browser';
 import {MatButton} from '@angular/material/button';
 import {AccountService} from './services/account.service';
+import {SnackbarMessageComponent} from './components/utils/snackbar-message/snackbar-message.component';
+import {MessagesService} from './services/messages.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatButton],
+  imports: [RouterOutlet, MatButton, SnackbarMessageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   title = 'cocobudget';
   isIframe = false;
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
+  @ViewChild(SnackbarMessageComponent) snackbarComponent : SnackbarMessageComponent | undefined;
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
     private accountService : AccountService,
-    private router : Router
+    private router : Router,
+    private messageService : MessagesService
   ) {}
+
+  ngAfterViewInit(): void {
+    if(!this.snackbarComponent) return;
+    this.messageService.setSnackbarComponent(this.snackbarComponent);
+  }
 
   ngOnInit(): void {
     this.authService.handleRedirectObservable().subscribe();
@@ -108,21 +117,11 @@ export class AppComponent implements OnInit, OnDestroy {
   checkIfUserIsRegistered(email : string){
     this.accountService.checkIfUserRegistered(email).subscribe((response) => {
       if(response.value?.isRegistered){
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']).then();
       } else {
-        this.router.navigate(['/home/setup']);
+        this.router.navigate(['/home/setup']).then();
       }
     });
-  }
-
-  logout(popup?: boolean) {
-    if (popup) {
-      this.authService.logoutPopup({
-        mainWindowRedirectUri: '/landing',
-      });
-    } else {
-      this.authService.logoutRedirect();
-    }
   }
 
   ngOnDestroy(): void {
