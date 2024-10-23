@@ -1,1 +1,14 @@
-<p>budget works!</p>
+<div class="d-flex gap-2 align-items-center">
+  <h5 class="fw-bold mb-0">Budget Overview</h5>
+  <mat-icon aria-hidden="false"
+            aria-label="tooltip icon for budget page description"
+            fontIcon="help"
+            class="mat-icon-color"
+            matTooltipPosition="right"
+            matTooltip="Folders group related categories. Use folders like 'Food' or 'Bills' to organize your expenses, then add specific categories such as rent or groceries inside them for detailed tracking.">
+  </mat-icon>
+  <button mat-flat-button class="ms-auto bg-cta-blue" (click)="openDialog()">
+    <span class="text-white">Create a folder</span>
+  </button>
+</div>
+<p class="pb-4 mt-2">Organize your expenses into folders and categories for easy tracking and management.</p>
