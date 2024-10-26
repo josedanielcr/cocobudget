@@ -28,8 +28,8 @@
       <div class="pb-1">
         <span>Set the color you want your folder to look like</span>
         <ngx-colors
+          #colorPicker
           ngx-colors-trigger
-          [(ngModel)]="color"
           acceptLabel="Select"
           cancelLabel="Cancel">
         </ngx-colors>
@@ -45,51 +45,14 @@
             </mat-expansion-panel-header>
             <!-- icon chip options-->
             <mat-chip-listbox aria-label="Icon chips selection">
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">folder</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">account_balance_wallet</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">shopping_cart</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">home</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">directions_car</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">local_dining</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">attach_money</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">credit_card</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">work</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">local_offer</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">subscriptions</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">build</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">health_and_safety</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">travel_explore</mat-icon>
-              </mat-chip-option>
-              <mat-chip-option class="d-flex align-items-center justify-content-center">
-                <mat-icon class="chip-icon-pt">event</mat-icon>
-              </mat-chip-option>
+              @for(option of chipOptions; track option.value) {
+                <mat-chip-option
+                  class="d-flex align-items-center justify-content-center"
+                  [value]="option.value"
+                  (selectionChange)="onChipSelectionChange($event)">
+                  <mat-icon class="chip-icon-pt">{{ option.icon }}</mat-icon>
+                </mat-chip-option>
+              }
             </mat-chip-listbox>
           </mat-expansion-panel>
         </mat-accordion>
@@ -101,5 +64,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Create</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createFolder()">Create</button>
 </mat-dialog-actions>

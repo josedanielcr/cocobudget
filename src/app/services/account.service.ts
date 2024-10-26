@@ -37,4 +37,11 @@ export class AccountService {
         })
       );
   }
+
+  public getUser(email : string) : Observable<Result<User>>{
+    return this.httpClient.get(`${this._accountServiceEndpoint}${this._accountServicePrefix}/${email}`)
+      .pipe(
+        map((response: any)=> response as Result<User>)
+      );
+  }
 }
