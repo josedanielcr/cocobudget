@@ -21,4 +21,11 @@ export class BudgetService {
         map((response: any)=> response as Result<Folder>)
       );
   }
+
+  public getUserFolders(userId : string) : Observable<Result<Folder[]>>{
+    return this.httpClient.get(`${this._budgetServiceEndpoint}${this._folderServicePrefix}/${userId}`)
+      .pipe(
+        map((response: any)=> response as Result<Folder[]>)
+      );
+  }
 }

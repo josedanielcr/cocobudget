@@ -12,3 +12,11 @@
   </button>
 </div>
 <p class="pb-4 mt-2">Organize your expenses into folders and categories for easy tracking and management.</p>
+@if(folders.length === 0) {
+  <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+    <h6 class="fw-bold">No folders found! Create one with the 'Create folder' option</h6>
+    <img src="assets/icons/Empty.svg" alt="image when there are no folders added" class="img-empty-icon">
+  </div>
+} @else {
+
+}
