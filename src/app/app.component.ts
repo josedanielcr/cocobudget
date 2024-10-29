@@ -117,6 +117,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   checkIfUserIsRegistered(email : string){
     this.accountService.checkIfUserRegistered(email).subscribe((response) => {
       if(response.value?.isRegistered){
+        this.getUserDataAndRedirect(email);
         this.router.navigate(['/home']).then();
       } else {
         this.router.navigate(['/home/setup']).then();
@@ -127,5 +128,14 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     this._destroying$.next(undefined);
     this._destroying$.complete();
+  }
+
+  private getUserDataAndRedirect(email: string) {
+    this.accountService.getUser(email).subscribe((response) => {
+      if(response.value){
+        this.accountService.user.set(response.value);
+        this.router.navigate(['/home']).then();
+      }
+    });
   }
 }

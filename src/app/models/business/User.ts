@@ -1,6 +1,7 @@
 import {BaseClass} from './BaseClass';
 
 export class User extends BaseClass {
+  id : string;
   firstName: string;
   lastName: string;
   email: string;
@@ -8,6 +9,7 @@ export class User extends BaseClass {
   isVerified: boolean;
 
   constructor(
+    id : string,
     firstName: string,
     lastName: string,
     email: string,
@@ -15,6 +17,7 @@ export class User extends BaseClass {
     isVerified: boolean = false
   ) {
     super();  // Call to the base class constructor
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;

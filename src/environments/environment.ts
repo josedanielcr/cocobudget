@@ -21,7 +21,7 @@ export const environment: EnvironmentConfiguration = {
   },
   cacheTimeInMinutes: 30,
   accountService: 'http://localhost:5063/api/',
-  budgetService: '',
+  budgetService: 'http://localhost:5119/api/',
   transactionService: '',
   notificationService: ''
 };

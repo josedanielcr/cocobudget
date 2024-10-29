@@ -1,1 +1,27 @@
-<p>budget works!</p>
+<div class="d-flex gap-2 align-items-center">
+  <h5 class="fw-bold mb-0">Budget Overview</h5>
+  <mat-icon aria-hidden="false"
+            aria-label="tooltip icon for budget page description"
+            fontIcon="help"
+            class="mat-icon-color"
+            matTooltipPosition="right"
+            matTooltip="Folders group related categories. Use folders like 'Food' or 'Bills' to organize your expenses,
+            then add specific categories such as rent or groceries inside them for detailed tracking.">
+  </mat-icon>
+  <button mat-flat-button class="ms-auto bg-cta-blue" (click)="openDialog()">
+    <span class="text-white">Create a folder</span>
+  </button>
+</div>
+<p class="pb-4 mt-2">Organize your expenses into folders and categories for easy tracking and management.</p>
+@if(budgetService.folders()?.length === 0) {
+  <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+    <img src="assets/icons/Empty.svg" alt="image when there are no folders added" class="img-empty-icon">
+    <p class="fw-bold">No folders</p>
+    <p>Click the 'Create folder' button bellow to start your budget</p>
+    <button mat-flat-button class="bg-cta-blue" (click)="openDialog()">
+      <span class="text-white">Create a folder</span>
+    </button>
+  </div>
+} @else {
+  <app-folders></app-folders>
+}
