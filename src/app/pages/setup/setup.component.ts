@@ -24,8 +24,11 @@ export class SetupComponent {
 
   readonly firstName: FormControl<string | null> = new FormControl('', [Validators.required]);
   readonly lastName: FormControl<string | null> = new FormControl('', [Validators.required]);
+  readonly budgetDayLength: FormControl<number | null> = new FormControl(30, [Validators.required]);
+
   firstNameErrorMessage: WritableSignal<string> = signal('');
   lastNameErrorMessage: WritableSignal<string> = signal('');
+  budgetStartDateErrorMessage: WritableSignal<string> = signal('');
 
   constructor(private accountService: AccountService,
               private messageService : MessagesService,
@@ -34,7 +37,9 @@ export class SetupComponent {
       this.firstName.statusChanges,
       this.firstName.valueChanges,
       this.lastName.statusChanges,
-      this.lastName.valueChanges
+      this.lastName.valueChanges,
+      this.budgetDayLength.statusChanges,
+      this.budgetDayLength.valueChanges
     )
     .pipe(takeUntilDestroyed())
     .subscribe(() => {
@@ -45,6 +50,7 @@ export class SetupComponent {
   public updateErrorMessages(): void {
     this.firstNameErrorMessage.set(this.getErrorMessage(this.firstName, 'first name'));
     this.lastNameErrorMessage.set(this.getErrorMessage(this.lastName, 'last name'));
+    this.budgetStartDateErrorMessage.set(this.getErrorMessage(this.budgetDayLength, 'budget start date'));
   }
 
   public getErrorMessage(control: FormControl, fieldName: string): string {
@@ -61,7 +67,7 @@ export class SetupComponent {
       return;
     }
 
-    const createUserRequest = new CreateUserRequest(this.firstName.value!, this.lastName.value!, this.accountService.userEmail());
+    const createUserRequest = new CreateUserRequest(this.firstName.value!, this.lastName.value!, this.accountService.userEmail(),'',this.budgetDayLength.value!);
     this.accountService.setupUser(createUserRequest).subscribe({
       next : (result : Result<User>) => {
         this.messageService.showSnackbarMessage('Information updated successfully', SnackbarType.SUCCESS);

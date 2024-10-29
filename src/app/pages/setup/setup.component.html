@@ -31,6 +31,25 @@
           <mat-error>{{lastNameErrorMessage()}}</mat-error>
         }
       </mat-form-field>
+
+      <!-- budget day length-->
+      <mat-form-field class="w-100 pb-4">
+        <mat-label>Set the amount of days your budget will last</mat-label>
+        <input
+          matInput
+          placeholder="30"
+          maxlength="365"
+          type="number"
+          [formControl]="budgetDayLength"
+          (blur)="updateErrorMessages()"
+          required
+        />
+        <mat-hint>Enter a number between 1 and 365</mat-hint>
+        @if (budgetDayLength.invalid) {
+          <mat-error>{{budgetStartDateErrorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+
       <button mat-flat-button class="w-100 bg-cta-blue" (click)="setupUser()">
         <span class="text-white">Complete your profile</span>
       </button>

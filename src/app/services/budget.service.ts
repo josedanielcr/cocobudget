@@ -22,15 +22,14 @@ export class BudgetService {
     if (user) {
       this.getUserFolders(user.id).subscribe({
         error : (error : Result<Folder[]>) => {
-          this.messageService.showSnackbarMessage(error.error.message, SnackbarType.ERROR);
+          this.folders.update(() => []);
         }
       });
     }
   });
 
   constructor(private httpClient : HttpClient,
-              private accountService : AccountService,
-              private messageService : MessagesService) { }
+              private accountService : AccountService) { }
 
   public createFolder(createFolderRequest : CreateFolderRequest) : Observable<Result<Folder>>{
     return this.httpClient.post(`${this._budgetServiceEndpoint}${this._folderServicePrefix}`, createFolderRequest)

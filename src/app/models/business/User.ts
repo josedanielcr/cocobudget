@@ -6,7 +6,7 @@ export class User extends BaseClass {
   lastName: string;
   email: string;
   profilePicture: string;
-  isVerified: boolean;
+  budgetDayLength: number;
 
   constructor(
     id : string,
@@ -14,7 +14,7 @@ export class User extends BaseClass {
     lastName: string,
     email: string,
     profilePicture: string = '',
-    isVerified: boolean = false
+    budgetDayLength: number,
   ) {
     super();  // Call to the base class constructor
     this.id = id;
@@ -22,6 +22,6 @@ export class User extends BaseClass {
     this.lastName = lastName;
     this.email = email;
     this.profilePicture = profilePicture;
-    this.isVerified = isVerified;
+    this.budgetDayLength = budgetDayLength;
   }
 }
