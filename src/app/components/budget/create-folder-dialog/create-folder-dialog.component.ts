@@ -33,19 +33,19 @@ export class CreateFolderDialogComponent {
   @ViewChild('colorPicker') colorPicker!: NgxColorsComponent;
   chipOptions: ChipOption[] = [
     { name: 'Folder', icon: 'folder', value: 'folder' },
-    { name: 'Wallet', icon: 'account_balance_wallet', value: 'wallet' },
+    { name: 'Wallet', icon: 'account_balance_wallet', value: 'account_balance_wallet' },
     { name: 'Shopping Cart', icon: 'shopping_cart', value: 'shopping_cart' },
     { name: 'Home', icon: 'home', value: 'home' },
-    { name: 'Car', icon: 'directions_car', value: 'car' },
-    { name: 'Dining', icon: 'local_dining', value: 'dining' },
-    { name: 'Money', icon: 'attach_money', value: 'money' },
+    { name: 'Car', icon: 'directions_car', value: 'directions_car' },
+    { name: 'Dining', icon: 'local_dining', value: 'local_dining' },
+    { name: 'Money', icon: 'attach_money', value: 'attach_money' },
     { name: 'Credit Card', icon: 'credit_card', value: 'credit_card' },
     { name: 'Work', icon: 'work', value: 'work' },
-    { name: 'Offer', icon: 'local_offer', value: 'offer' },
+    { name: 'Offer', icon: 'local_offer', value: 'local_offer' },
     { name: 'Subscriptions', icon: 'subscriptions', value: 'subscriptions' },
     { name: 'Build', icon: 'build', value: 'build' },
-    { name: 'Health & Safety', icon: 'health_and_safety', value: 'health' },
-    { name: 'Travel', icon: 'travel_explore', value: 'travel' },
+    { name: 'Health & Safety', icon: 'health_and_safety', value: 'health_and_safety' },
+    { name: 'Travel', icon: 'travel_explore', value: 'travel_explore' },
     { name: 'Event', icon: 'event', value: 'event' },
   ];
 
