@@ -89,6 +89,9 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(
+      withFetch(),
+    ),
     provideZoneChangeDetection({eventCoalescing: true}), provideRouter(routes),
     provideRouter(routes),
     importProvidersFrom(

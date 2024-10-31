@@ -1,0 +1,17 @@
+<div class="h-100 w-100">
+  <div class="d-flex">
+    <span matSnackBarLabel class="text-light">
+      {{data.message}}
+    </span>
+    <span matSnackBarActions class="ms-auto text-dark">
+      <button mat-button matSnackBarAction>
+        <mat-icon aria-hidden="false" aria-label="budget sidebar icon" [fontIcon]="getAssertedIcon()!" [ngClass]="{
+          'text-success': data.type === 'success',
+          'text-danger': data.type === 'error',
+          'text-warning': data.type === 'warning',
+          'text-cta-blue': data.type === 'info'
+        }"></mat-icon>
+      </button>
+    </span>
+  </div>
+</div>

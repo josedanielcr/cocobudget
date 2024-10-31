@@ -1,0 +1,68 @@
+<div class="d-flex p-4 no-gap">
+  <!--title and description-->
+  <div class="info-container">
+    <h5 class="fw-bold">Create new folder</h5>
+    <p>Folders group related expenses, like "Food" or "Housing." Inside, you can add categories like "Rent" or "Groceries" for detailed tracking.
+      Create as many folders as needed to organize your budget.</p>
+  </div>
+
+  <!--folder creation form-->
+  <div class="form-container p-3 bg-light main-shadow border-rounded">
+
+    <!-- main form-->
+    <form>
+      <span class="text-dark">Add the name of your new folder</span>
+      <mat-form-field class="w-100 pt-3 pb-3">
+        <input
+          matInput
+          placeholder="Housing"
+          [formControl]="name"
+          (blur)="updateErrorMessages()"
+          required
+        />
+        @if (name.invalid) {
+          <mat-error>{{nameErrorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="pb-1">
+        <span class="text-dark">Set the color you want your folder to look like</span>
+        <ngx-colors
+          #colorPicker
+          ngx-colors-trigger
+          acceptLabel="Select"
+          cancelLabel="Cancel">
+        </ngx-colors>
+      </div>
+
+      <div class="pt-4 user-select-none">
+        <mat-accordion multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                <span class="text-dark">Select an icon for your folder</span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <!-- icon chip options-->
+            <mat-chip-listbox aria-label="Icon chips selection">
+              @for(option of chipOptions; track option.value) {
+                <mat-chip-option
+                  class="d-flex align-items-center justify-content-center"
+                  [value]="option.value"
+                  (selectionChange)="onChipSelectionChange($event)">
+                  <mat-icon class="chip-icon-pt">{{ option.icon }}</mat-icon>
+                </mat-chip-option>
+              }
+            </mat-chip-listbox>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="createFolder()">Create</button>
+</mat-dialog-actions>

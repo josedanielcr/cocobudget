@@ -13,4 +13,8 @@ export interface EnvironmentConfiguration {
     apiEndpointUrl: string;
   }
   cacheTimeInMinutes: number;
+  accountService : string;
+  budgetService : string;
+  transactionService : string;
+  notificationService : string;
 }
