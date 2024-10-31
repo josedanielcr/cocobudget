@@ -1,13 +1,13 @@
-import {effect, Injectable, OnInit, signal, WritableSignal} from '@angular/core';
+import {effect, Injectable, signal, WritableSignal} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {Result} from '../models/Result';
 import {Folder} from '../models/business/Folder';
 import {CreateFolderRequest} from '../shared/models/account/CreateFolderRequest';
-import {SnackbarType} from '../components/utils/snackbar-message/snackbar-message.enum';
 import {AccountService} from './account.service';
-import {MessagesService} from './messages.service';
+import {Period} from '../models/business/Period';
+import {CreatePeriodRequest} from '../shared/models/period/CreatePeriodRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,8 @@ export class BudgetService {
 
   private readonly _budgetServiceEndpoint = environment.budgetService;
   private readonly _folderServicePrefix = 'folder';
+  private readonly _periodServicePrefix = 'period';
+
   folders : WritableSignal<Folder[] | null> =  signal<Folder[] | null>(null);
   private userFoldersEffect = effect(() => {
     const user = this.accountService.user();
@@ -53,6 +55,15 @@ export class BudgetService {
           const folders = response as Result<Folder[]>;
           this.folders.update(value => folders.value);
           return folders;
+        })
+      );
+  }
+
+  public createPeriod(createPeriodRequest : CreatePeriodRequest) : Observable<Result<Period>>{
+    return this.httpClient.post(`${this._budgetServiceEndpoint}${this._periodServicePrefix}`, createPeriodRequest)
+      .pipe(
+        map((response: any)=> {
+          return response as Result<Period>;
         })
       );
   }
